@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<!--
+  WAVLY WEB STANDARD v1.0
+  - Footer must always contain Wavly attribution mark (see footer section)
+  - Never include third-party watermarks or branding (webly, wix, squarespace, etc.)
+  - Logo file: logo.png (wave mark, use white version on dark backgrounds)
+  - Brand colors: #5B8AFF (blue light), #1A40CC (blue dark)
+  - wavly.cz
+-->
+<html lang="cs" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Level Pardubice | Vaše oáza v Paláci</title>
+<script src="https://cdn.tailwindcss.com" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'coffee-dark': '#1a0f0a',
+          'coffee-medium': '#2c1e17',
+          'gold-accent': '#c5a059',
+          'cream': '#f8f4eb',
+        },
+        fontFamily: {
+          'serif': ['Playfair Display', 'serif'],
+          'sans': ['Inter', 'sans-serif'],
+        }
+      }
+    }
+  }
+
+  function showPage(pageId) {
+    const pages = ['home-page', 'full-menu-page'];
+    pages.forEach(id => {
+      const el = document.getElementById(id);
+      if (id === pageId) {
+        el.classList.remove('hidden');
+        el.classList.add('page-enter');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => el.classList.add('page-visible'));
+        });
+      } else {
+        el.classList.add('hidden');
+        el.classList.remove('page-enter', 'page-visible');
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+</script>
+<style>
+/* ─── Variables ─── */
+:root {
+  --coffee-dark:  #1a0f0a;
+  --coffee-mid:   #2c1e17;
+  --coffee-light: #3d2b1f;
+  --gold:         #c5a059;
+  --gold-light:   #d4b06a;
+  --gold-dim:     rgba(197,160,89,0.12);
+  --gold-border:  rgba(197,160,89,0.25);
+  --cream:        #f8f4eb;
+  --cream-dark:   #ede8d8;
+  --text-muted:   rgba(248,244,235,0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--coffee-dark);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--coffee-dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ─── Scroll Progress ─── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--gold);
+  width: 0%;
+  z-index: 999;
+  transition: width 80ms linear;
+  box-shadow: 0 0 8px rgba(197,160,89,0.6);
+}
+
+/* ─── Page Transitions ─── */
+.page-enter { opacity: 0; transform: translateY(12px); }
+.page-visible { opacity: 1; transform: translateY(0); transition: opacity 400ms cubic-bezier(0.16,1,0.3,1), transform 400ms cubic-bezier(0.16,1,0.3,1); }
+
+/* ─── Navbar ─── */
+#navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  padding: 22px 32px;
+  transition: background 500ms ease, border-color 500ms ease, padding 400ms ease;
+}
+#navbar.scrolled {
+  background: rgba(26,15,10,0.97);
+  border-color: rgba(197,160,89,0.15);
+  padding: 14px 32px;
+}
+.nav-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { cursor: pointer; }
+.nav-logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.nav-logo-sub {
+  font-size: 8.5px;
+  letter-spacing: 0.38em;
+  color: rgba(248,244,235,0.35);
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link {
+  color: rgba(248,244,235,0.65);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 300ms ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 300ms ease;
+}
+.nav-link:hover { color: var(--gold); }
+.nav-link:hover::after { width: 100%; }
+.nav-cta {
+  border: 1px solid rgba(197,160,89,0.7);
+  color: var(--gold);
+  background: transparent;
+  padding: 9px 22px;
+  border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--coffee-dark);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(197,160,89,0.25);
+}
+
+/* ─── Hamburger ─── */
+.hamburger-btn {
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.hamburger-btn span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--gold);
+  transition: all 320ms cubic-bezier(0.16,1,0.3,1);
+  transform-origin: center;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─── Mobile Menu ─── */
+.mobile-menu {
+  position: fixed; inset: 0;
+  background: rgba(15,9,5,0.98);
+  z-index: 200;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 28px;
+  transform: translateX(100%);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu .m-link, .mobile-menu button.m-item {
+  color: rgba(248,244,235,0.7);
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  text-decoration: none;
+  cursor: pointer;
+  background: none; border: none;
+  transition: color 300ms, transform 300ms;
+  opacity: 0;
+  transform: translateX(24px);
+}
+.mobile-menu.open .m-link, .mobile-menu.open button.m-item { opacity: 1; transform: translateX(0); }
+.mobile-menu.open .m-link:nth-child(2) { transition-delay: 80ms; }
+.mobile-menu.open .m-link:nth-child(3) { transition-delay: 130ms; }
+.mobile-menu.open .m-link:nth-child(4) { transition-delay: 180ms; }
+.mobile-menu.open button.m-item       { transition-delay: 230ms; }
+.mobile-menu .m-link:hover, .mobile-menu button.m-item:hover { color: var(--gold); transform: translateX(6px) !important; }
+.mobile-close {
+  position: absolute; top: 24px; right: 28px;
+  background: none; border: none;
+  cursor: pointer; color: rgba(248,244,235,0.3);
+  font-size: 22px; transition: color 300ms;
+}
+.mobile-close:hover { color: var(--gold); }
+.mobile-menu-line {
+  width: 32px; height: 1px;
+  background: rgba(197,160,89,0.25);
+  margin: 4px 0;
+}
+
+/* ─── Hero ─── */
+.hero-section {
+  height: 100vh; min-height: 640px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(170deg, rgba(26,15,10,0.15) 0%, rgba(26,15,10,0.88) 60%, rgba(15,9,5,0.97) 100%),
+    url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=2070') center/cover no-repeat;
+}
+/* Grain texture */
+.hero-section::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px;
+  pointer-events: none;
+}
+/* Ambient glow */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(197,160,89,0.07) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+.hero-content {
+  max-width: 820px; padding: 0 28px;
+  position: relative; z-index: 2;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(197,160,89,0.1);
+  border: 1px solid rgba(197,160,89,0.25);
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeIn 600ms cubic-bezier(0.16,1,0.3,1) 0s forwards;
+}
+.hero-badge-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 6px rgba(197,160,89,0.8);
+  animation: pulse 2s infinite;
+}
+.hero-badge-text {
+  color: var(--gold); font-size: 10px;
+  letter-spacing: 0.35em; text-transform: uppercase; font-weight: 500;
+}
+.hero-h1 {
+  font-size: clamp(52px, 9vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--cream);
+  line-height: 1.0;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 900ms cubic-bezier(0.16,1,0.3,1) 0.15s forwards;
+}
+.hero-h1 em {
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  color: rgba(248,244,235,0.75);
+  font-size: 0.65em;
+  display: block;
+  letter-spacing: 0;
+}
+.hero-divider {
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 22px;
+  opacity: 0;
+  animation: fadeIn 800ms ease 0.4s forwards;
+}
+.hero-sub {
+  font-size: 18px;
+  color: rgba(248,244,235,0.7);
+  max-width: 480px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.75;
+  opacity: 0;
+  animation: fadeUp 700ms cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+}
+.hero-buttons {
+  display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 700ms cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 40px;
+  margin-top: 56px; padding-top: 40px;
+  border-top: 1px solid rgba(197,160,89,0.12);
+  opacity: 0;
+  animation: fadeIn 600ms ease 1s forwards;
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; color: var(--cream); line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-num span { color: var(--gold); }
+.hero-stat-label {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(248,244,235,0.35);
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--coffee-dark);
+  padding: 15px 34px;
+  border-radius: 2px; border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+  text-decoration: none; display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(197,160,89,0.3);
+}
+.btn-secondary {
+  background: transparent;
+  color: rgba(248,244,235,0.8);
+  padding: 15px 34px;
+  border-radius: 2px;
+  border: 1px solid rgba(248,244,235,0.2);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  cursor: pointer;
+  transition: all 300ms ease;
+  text-decoration: none; display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+.scroll-indicator {
+  position: absolute; bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  z-index: 2;
+}
+.scroll-mouse {
+  width: 22px; height: 34px;
+  border: 1.5px solid rgba(197,160,89,0.4);
+  border-radius: 11px;
+  display: flex; justify-content: center; padding-top: 6px;
+}
+.scroll-wheel {
+  width: 3px; height: 6px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite;
+}
+.scroll-text {
+  font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(197,160,89,0.4);
+  font-weight: 500;
+}
+
+/* ─── Section Divider ─── */
+.section-divider {
+  display: flex; align-items: center; gap: 20px; padding: 0 48px;
+}
+.section-divider span:first-child,
+.section-divider span:last-child { flex: 1; height: 1px; background: rgba(197,160,89,0.15); }
+.section-divider span:nth-child(2) { color: rgba(197,160,89,0.5); font-size: 10px; }
+.divider-wrap { padding: 48px 0; }
+
+/* ─── Section Headers ─── */
+.section-eyebrow {
+  color: var(--gold); font-size: 10.5px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 14px;
+}
+.section-h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--coffee-dark);
+  font-size: clamp(30px, 4vw, 46px);
+  position: relative; display: inline-block; padding-bottom: 18px;
+}
+.section-h2::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 2px; background: var(--gold);
+  transition: width 600ms cubic-bezier(0.16,1,0.3,1) 200ms;
+}
+.section-h2.visible::after { width: 56px; }
+.section-header { text-align: center; margin-bottom: 64px; }
+
+/* ─── Lokalita ─── */
+.map-container {
+  border-radius: 4px;
+  border: 1px solid rgba(197,160,89,0.2);
+  box-shadow: 0 32px 80px rgba(26,15,10,0.14), 0 0 0 1px rgba(197,160,89,0.08);
+  overflow: hidden; height: 420px; position: relative;
+  transition: box-shadow 400ms ease;
+}
+.map-container:hover {
+  box-shadow: 0 32px 80px rgba(26,15,10,0.2), 0 0 0 1px rgba(197,160,89,0.2);
+}
+.info-card {
+  background: var(--coffee-dark);
+  padding: 28px 24px; border-radius: 4px;
+  border: 1px solid rgba(197,160,89,0.08);
+  border-left: 2px solid var(--gold);
+  box-shadow: 0 16px 48px rgba(26,15,10,0.2);
+  transition: box-shadow 400ms ease, border-color 400ms ease;
+}
+.info-card:hover {
+  box-shadow: 0 20px 64px rgba(26,15,10,0.35), 0 0 0 1px rgba(197,160,89,0.15);
+  border-color: rgba(197,160,89,0.25);
+}
+.info-card-icon { color: var(--gold); font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.info-card-title {
+  color: var(--gold); font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+}
+.info-card-text { color: rgba(248,244,235,0.65); font-size: 13.5px; line-height: 1.9; }
+
+/* ─── Kontakt ─── */
+.kontakt-section-bg {
+  background: white;
+  background-image: radial-gradient(circle at 80% 20%, rgba(197,160,89,0.04) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(197,160,89,0.03) 0%, transparent 50%);
+}
+.contact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid rgba(197,160,89,0.06);
+  transition: padding-left 300ms ease;
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-item:hover { padding-left: 4px; }
+.contact-icon-wrap {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(197,160,89,0.08);
+  border: 1px solid rgba(197,160,89,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); flex-shrink: 0;
+  transition: all 280ms ease;
+}
+.contact-item:hover .contact-icon-wrap {
+  background: var(--gold); color: white;
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(197,160,89,0.3);
+}
+.contact-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(26,15,10,0.35); margin-bottom: 2px;
+}
+.contact-value { font-size: 16px; font-weight: 500; color: var(--coffee-dark); }
+.social-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid rgba(197,160,89,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 18px;
+  text-decoration: none;
+  transition: all 280ms ease;
+}
+.social-icon:hover {
+  background: var(--gold); color: white;
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 10px 28px rgba(197,160,89,0.35);
+  border-color: var(--gold);
+}
+
+/* ─── Menu Page ─── */
+#full-menu-page {
+  background: var(--coffee-dark);
+  background-image:
+    radial-gradient(ellipse 80% 40% at 20% 10%, rgba(197,160,89,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 90%, rgba(197,160,89,0.03) 0%, transparent 60%);
+  min-height: 100vh; color: var(--cream);
+}
+.menu-sticky-nav {
+  position: sticky; top: 0;
+  background: rgba(22,13,8,0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(197,160,89,0.12);
+  z-index: 50; overflow-x: auto; scrollbar-width: none;
+}
+.menu-sticky-nav::-webkit-scrollbar { display: none; }
+.menu-nav-inner { display: flex; padding: 0 28px; min-width: max-content; }
+.menu-pill {
+  padding: 15px 16px;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(248,244,235,0.35);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  border-top: none; border-left: none; border-right: none;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  transition: all 200ms ease;
+}
+.menu-pill:hover { color: rgba(197,160,89,0.8); }
+.menu-pill.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.menu-section-card {
+  background: rgba(44,30,23,0.35);
+  border: 1px solid rgba(197,160,89,0.08);
+  border-radius: 6px;
+  padding: 32px 28px;
+  transition: border-color 400ms ease;
+}
+.menu-section-card:hover { border-color: rgba(197,160,89,0.15); }
+
+.menu-section-header {
+  margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(197,160,89,0.15);
+}
+.menu-eyebrow {
+  color: rgba(197,160,89,0.45);
+  font-size: 9.5px; letter-spacing: 0.35em;
+  text-transform: uppercase; font-weight: 600; margin-bottom: 5px;
+}
+.menu-h3 { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 24px; }
+.menu-item {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 9px 10px; border-radius: 3px; gap: 16px;
+  transition: background 200ms ease, padding-left 200ms ease;
+  border-left: 2px solid transparent;
+}
+.menu-item:hover {
+  background: rgba(197,160,89,0.05);
+  padding-left: 14px;
+  border-left-color: rgba(197,160,89,0.3);
+}
+.menu-item-name { color: var(--cream); font-size: 13.5px; font-weight: 500; line-height: 1.45; }
+.menu-item-desc { color: rgba(248,244,235,0.38); font-size: 11.5px; line-height: 1.6; font-style: italic; margin-top: 3px; }
+.menu-item-price { color: var(--gold); font-size: 13.5px; font-weight: 600; white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.menu-sub-label {
+  color: rgba(248,244,235,0.25); font-size: 10px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  margin: 18px 0 8px 10px; display: flex; align-items: center; gap: 8px;
+}
+.menu-sub-label::after { content: ''; flex: 1; height: 1px; background: rgba(197,160,89,0.1); }
+.menu-note { color: rgba(248,244,235,0.28); font-size: 11px; font-style: italic; margin-top: 14px; line-height: 1.6; padding: 0 10px; }
+.menu-addon {
+  color: rgba(248,244,235,0.35); font-size: 11px;
+  padding: 5px 10px; display: flex; justify-content: space-between;
+}
+.menu-back-btn {
+  border: 1px solid rgba(197,160,89,0.5);
+  color: var(--gold); background: transparent;
+  padding: 10px 28px; border-radius: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; transition: all 300ms ease;
+}
+.menu-back-btn:hover {
+  background: var(--gold); color: var(--coffee-dark);
+  border-color: var(--gold);
+  box-shadow: 0 8px 24px rgba(197,160,89,0.25);
+}
+
+/* ─── Footer ─── */
+#site-footer {
+  background: #0d0805;
+  border-top: 1px solid rgba(197,160,89,0.08);
+  padding: 72px 24px 40px;
+  text-align: center; color: rgba(248,244,235,0.25);
+}
+.footer-logo-main {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 30px; text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.footer-logo-sub {
+  font-size: 9px; letter-spacing: 0.35em;
+  text-transform: uppercase; color: rgba(248,244,235,0.2); margin-top: 5px;
+}
+.footer-divider {
+  display: flex; align-items: center; gap: 16px;
+  max-width: 360px; margin: 28px auto;
+}
+.footer-divider span:first-child,
+.footer-divider span:last-child { flex: 1; height: 1px; background: rgba(197,160,89,0.12); }
+.footer-divider span:nth-child(2) { color: rgba(197,160,89,0.3); font-size: 9px; }
+
+/* ─── Proč k nám cards ─── */
+.proc-card {
+  background: var(--coffee-dark);
+  border: 1px solid rgba(197,160,89,0.10);
+  border-radius: 6px;
+  padding: 28px 24px;
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+}
+.proc-card:hover {
+  border-color: rgba(197,160,89,0.28);
+  box-shadow: 0 16px 48px rgba(26,15,10,0.18);
+  transform: translateY(-3px);
+}
+.proc-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+.proc-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--cream); font-size: 18px; margin-bottom: 8px;
+}
+.proc-text { color: rgba(248,244,235,0.55); font-size: 13.5px; line-height: 1.65; }
+
+/* ─── Floating CTA (mobile only) ─── */
+#float-cta-mobile {
+  display: none;
+  position: fixed;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 98;
+  background: var(--gold);
+  color: var(--coffee-dark);
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 24px rgba(197,160,89,0.45);
+  align-items: center; gap: 8px;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, background 0.2s ease;
+}
+#float-cta-mobile.hidden {
+  transform: translateX(-50%) translateY(80px);
+  opacity: 0;
+  pointer-events: none;
+}
+#float-cta-mobile:hover { background: var(--gold-light); }
+@media (max-width: 767px) { #float-cta-mobile { display: flex; } }
+
+
+/* ─── Reveal ─── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 160ms; }
+.reveal-delay-3 { transition-delay: 240ms; }
+
+/* ─── Responsive ─── */
+.lokalita-grid { display: flex; flex-direction: column; gap: 40px; }
+@media (min-width: 1024px) {
+  .lokalita-grid { flex-direction: row; align-items: flex-start; }
+  .lokalita-grid > * { flex: 1; }
+}
+.kontakt-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 48px; max-width: 800px; margin: 0 auto;
+}
+@media (min-width: 640px) { .kontakt-grid { grid-template-columns: 1fr 1fr; } }
+.menu-grid {
+  display: grid; grid-template-columns: 1fr; gap: 24px;
+}
+@media (min-width: 768px)  { .menu-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1280px) { .menu-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+@keyframes scrollWheel {
+  0%   { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; }
+  * { animation-duration: 0ms !important; transition-duration: 0ms !important; }
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (max-width: 768px) {
+  .hero-stats { flex-direction: column; align-items: center; gap: 20px; }
+  .hero-stats > div[style*="width:1px"] { width: 48px !important; height: 1px !important; }
+  .hero-h1 { font-size: clamp(38px, 10vw, 64px); }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+
+  /* Nabídka cards stack properly */
+  #co-u-nas [style*="grid"],
+  section [style*="grid-template-columns:repeat(auto-fit"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Kontakt grid stacks */
+  .kontakt-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Lokalita info cards full width */
+  .lokalita-grid .info-card {
+    width: 100%;
+  }
+
+  /* Menu page cards */
+  .menu-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Nav CTA button touch target */
+  .nav-cta {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+
+  /* Section padding reduced on mobile */
+  section[style*="padding:100px"] {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Info cards full width */
+  .info-card {
+    width: 100%;
+  }
+
+  /* Menu sticky nav scrollable pills */
+  .menu-nav-inner {
+    padding: 0 16px;
+  }
+
+  /* Menu header padding */
+  .menu-grid {
+    padding: 32px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-badge-text {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+  .hero-stats {
+    padding-top: 28px;
+    margin-top: 36px;
+  }
+  .contact-value {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="progress-bar"></div>
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home-page')">
+      <div class="nav-logo-main">Café Level</div>
+      <div class="nav-logo-sub">Pardubice</div>
+    </div>
+    <div class="nav-links hidden md:flex">
+      <a href="javascript:void(0)" onclick="showPage('home-page')" class="nav-link">Úvod</a>
+      <a href="#lokalita" onclick="showPage('home-page')" class="nav-link">Lokalita</a>
+      <a href="#kontakt" onclick="showPage('home-page')" class="nav-link">Kontakt</a>
+      <button class="nav-cta" onclick="showPage('full-menu-page')">Nápojový lístek</button>
+    </div>
+    <button class="md:hidden hamburger-btn" id="hamburger" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Zavřít menu"><i class="fas fa-times"></i></button>
+  <a class="m-link" href="javascript:void(0)" onclick="showPage('home-page');closeMobile();">Úvod</a>
+  <div class="mobile-menu-line"></div>
+  <a class="m-link" href="#lokalita" onclick="showPage('home-page');closeMobile();">Lokalita</a>
+  <a class="m-link" href="#kontakt"  onclick="showPage('home-page');closeMobile();">Kontakt</a>
+  <div class="mobile-menu-line"></div>
+  <button class="m-item" onclick="showPage('full-menu-page');closeMobile();">Menu</button>
+</div>
+
+<!-- ─── HOME PAGE ─── -->
+<main id="home-page" class="page-enter page-visible">
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span class="hero-badge-text">Pardubice · Palác · 1. patro</span>
+      </div>
+      <h1 class="hero-h1">
+        Café Level
+        <em>Pardubice</em>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">Kavárna v 1. patře Paláce Pardubice<br>s celoroční zahrádkou.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('full-menu-page')">Zobrazit jídelní lístek</button>
+        <a href="#lokalita" class="btn-secondary">Kde nás najdete</a>
+      </div>
+      <div class="hero-stats">
+        <!-- Open/Closed status -->
+        <div>
+          <div class="hero-stat-num" style="display:flex;align-items:center;gap:8px;">
+            <span id="status-dot" style="width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,0.7);flex-shrink:0;animation:pulse 2s infinite;"></span>
+            <span id="status-text">Otevřeno</span>
+          </div>
+          <div class="hero-stat-label" id="status-hours">Po – Čt: 9:00 – 21:00</div>
+        </div>
+        <div style="width:1px;background:rgba(197,160,89,0.15);"></div>
+        <!-- Closing time -->
+        <div>
+          <div class="hero-stat-num">Zavíráme <span id="closing-time">21:00</span></div>
+          <div class="hero-stat-label" id="closing-label">Dnes</div>
+        </div>
+        <div style="width:1px;background:rgba(197,160,89,0.15);"></div>
+        <!-- Call button -->
+        <div>
+          <a href="tel:+420777136260" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--coffee-dark);padding:12px 22px;border-radius:2px;text-decoration:none;transition:all 300ms ease;font-family:'Inter',sans-serif;" onmouseover="this.style.background='#d4b06a';this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 28px rgba(197,160,89,0.35)'" onmouseout="this.style.background='var(--gold)';this.style.transform='';this.style.boxShadow=''">
+            <i class="fas fa-phone" style="font-size:14px;"></i>
+            <div style="text-align:left;">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.02em;">+420 777 136 260</div>
+              <div style="font-size:9px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;margin-top:1px;">Rezervovat stůl</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider-wrap" style="background:var(--cream);">
+    <div class="section-divider"><span></span><span>✦</span><span></span></div>
+  </div>
+
+  <!-- NABÍDKA -->
+  <section style="background:var(--cream);padding:80px 32px;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Nabídka</p>
+        <h2 class="section-h2">Co u nás najdete</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        <div class="info-card reveal">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <i class="fas fa-coffee info-card-icon"></i>
+            <div>
+              <div class="info-card-title">Výběrová káva</div>
+              <div class="info-card-text">Lavazza, tierra i matcha v jakékoliv podobě dle vaší chuti.</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card reveal reveal-delay-1">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <i class="fas fa-sun info-card-icon"></i>
+            <div>
+              <div class="info-card-title">Snídaně</div>
+              <div class="info-card-text">Snídaně podáváme do 11:00 každý den.</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <i class="fas fa-wifi info-card-icon"></i>
+            <div>
+              <div class="info-card-title">Wifi + Zásuvky</div>
+              <div class="info-card-text">Samozřejmostí je Wifi včetně spousty dostupných zásuvek. Vhodný prostor pro vaši práci a pracovní setkání.</div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card reveal reveal-delay-3">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <i class="fas fa-glass-martini-alt info-card-icon"></i>
+            <div>
+              <div class="info-card-title">Sortiment</div>
+              <div class="info-card-text">Velký výběr alko i nealko nápojů, koktejlů, sladkých i slaných dobrot.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider-wrap" style="background:var(--cream);">
+    <div class="section-divider"><span></span><span>✦</span><span></span></div>
+  </div>
+
+  <!-- LOKALITA -->
+  <section id="lokalita" style="background:var(--cream);padding:100px 32px;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Kde nás najdete</p>
+        <h2 class="section-h2">Najdete nás v Paláci</h2>
+      </div>
+      <div class="lokalita-grid">
+        <div class="reveal">
+          <div class="map-container">
+            <iframe
+              src="https://maps.google.com/maps?q=Caf%C3%A9%20Level%20Pardubice&hl=cs&z=17&output=embed"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+          <div style="margin-top:14px;text-align:right;">
+            <a href="https://maps.app.goo.gl/PCe9J2QDGaxnazu16" target="_blank" rel="noopener noreferrer"
+               style="display:inline-flex;align-items:center;gap:8px;background:var(--coffee-dark);color:var(--gold);border:1px solid rgba(197,160,89,0.35);padding:9px 22px;border-radius:20px;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;text-decoration:none;transition:all 280ms ease;">
+              <i class="fas fa-external-link-alt" style="font-size:9px;"></i> Otevřít v aplikaci
+            </a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <p style="font-size:16.5px;line-height:1.85;color:rgba(44,30,23,0.75);margin-bottom:6px;" class="reveal">
+            Jsme v 1. patře Paláce Pardubice. Naše kavárna je ideálním místem pro setkání s přáteli, pracovní schůzky nebo jen pro krátkou zastávku. Parkování je možné v garáži Paláce Pardubice.
+          </p>
+          <div class="info-card reveal reveal-delay-1">
+            <div style="display:flex;gap:18px;align-items:flex-start;">
+              <i class="fas fa-clock info-card-icon"></i>
+              <div>
+                <div class="info-card-title">Otevírací doba</div>
+                <div class="info-card-text">
+                  Po – Čt: &nbsp;9:00 – 21:00<br>
+                  Pá – So: &nbsp;9:00 – 22:00<br>
+                  Ne: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10:00 – 21:00
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-2">
+            <div style="display:flex;gap:18px;align-items:flex-start;">
+              <i class="fas fa-map-marker-alt info-card-icon"></i>
+              <div>
+                <div class="info-card-title">Adresa</div>
+                <div class="info-card-text">
+                  Masarykovo náměstí 2799<br>530 02 Pardubice
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider-wrap" style="background:white;">
+    <div class="section-divider"><span></span><span>✦</span><span></span></div>
+  </div>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="kontakt-section-bg" style="padding:100px 32px;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Kontakt</p>
+        <h2 class="section-h2">Budeme se těšit!</h2>
+      </div>
+      <div class="kontakt-grid">
+        <div class="reveal">
+          <div class="contact-item">
+            <div class="contact-icon-wrap"><i class="fas fa-phone"></i></div>
+            <div>
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value">+420 777 136 260</div>
+              <div style="font-size:11px;color:rgba(26,15,10,0.4);margin-top:2px;">Po–Čt: 9:00–21:00 &nbsp;|&nbsp; Pá–So: 9:00–22:00 &nbsp;|&nbsp; Ne: 10:00–21:00</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-label">E-mail</div>
+              <div class="contact-value"><a href="mailto:darina.malinova@seznam.cz" style="color:var(--coffee-dark);text-decoration:none;">darina.malinova@seznam.cz</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap"><i class="fas fa-wifi"></i></div>
+            <div>
+              <div class="contact-label">WiFi síť</div>
+              <div class="contact-value" style="font-weight:600;letter-spacing:0.04em;">cafelevel123</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon-wrap"><i class="fas fa-plug"></i></div>
+            <div>
+              <div class="contact-label">Zásuvky</div>
+              <div class="contact-value" style="font-size:14px;">Zásuvky u většiny stolů</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1" style="display:flex;flex-direction:column;justify-content:center;gap:24px;">
+          <div>
+            <p style="font-size:10px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:rgba(26,15,10,0.35);margin-bottom:16px;">Sledujte nás</p>
+            <div style="display:flex;gap:12px;">
+              <a href="https://www.facebook.com/people/Caf%C3%A9-Level-Pardubice/100064034262839/" target="_blank" rel="noopener noreferrer" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.instagram.com/cafe.level" target="_blank" rel="noopener noreferrer" class="social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <div style="padding:24px;background:rgba(197,160,89,0.05);border:1px solid rgba(197,160,89,0.12);border-radius:4px;">
+            <p style="font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(26,15,10,0.35);margin-bottom:8px;">Rezervace</p>
+            <p style="font-size:14px;color:var(--coffee-mid);line-height:1.7;">Stoly rezervujeme telefonicky nebo osobně. Těšíme se na vaši návštěvu!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── MENU PAGE ─── -->
+<main id="full-menu-page" class="hidden">
+
+  <!-- Sticky category nav -->
+  <div class="menu-sticky-nav">
+    <div class="menu-nav-inner">
+      <button class="menu-pill active" onclick="scrollToCategory('snidane',this)">Snídaně</button>
+      <button class="menu-pill"        onclick="scrollToCategory('lavazza',this)">Lavazza</button>
+      <button class="menu-pill"        onclick="scrollToCategory('tierra',this)">Tierra</button>
+      <button class="menu-pill"        onclick="scrollToCategory('specialni',this)">Speciální</button>
+      <button class="menu-pill"        onclick="scrollToCategory('caje',this)">Čaje</button>
+      <button class="menu-pill"        onclick="scrollToCategory('dezerty',this)">Dezerty</button>
+      <button class="menu-pill"        onclick="scrollToCategory('nealko',this)">Nealko</button>
+      <button class="menu-pill"        onclick="scrollToCategory('koktejly',this)">Koktejly</button>
+      <button class="menu-pill"        onclick="scrollToCategory('vina',this)">Vína</button>
+      <button class="menu-pill"        onclick="scrollToCategory('kuchyne',this)">Kuchyně</button>
+    </div>
+  </div>
+
+  <!-- Menu header -->
+  <div style="padding:72px 32px 56px;border-bottom:1px solid rgba(197,160,89,0.1);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;">
+      <div>
+        <p style="color:rgba(197,160,89,0.5);font-size:10px;letter-spacing:0.35em;text-transform:uppercase;margin-bottom:14px;">Café Level Pardubice</p>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);color:var(--cream);line-height:1.05;margin-bottom:18px;letter-spacing:-0.02em;">
+          Nápojový & Jídelní<br>
+          <span style="font-style:italic;color:rgba(248,244,235,0.55);font-size:0.65em;">lístek</span>
+        </h1>
+        <div style="width:60px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:18px;"></div>
+        <span style="background:rgba(197,160,89,0.1);border:1px solid rgba(197,160,89,0.25);color:var(--gold);padding:7px 18px;border-radius:20px;font-size:11.5px;font-weight:600;letter-spacing:0.06em;display:inline-flex;align-items:center;gap:8px;">
+          <i class="fas fa-wifi" style="font-size:10px;"></i> WiFi: cafelevel123
+        </span>
+      </div>
+      <button class="menu-back-btn" onclick="showPage('home-page')">← Zpět na úvod</button>
+    </div>
+  </div>
+
+  <!-- Menu grid -->
+  <div style="max-width:1280px;margin:0 auto;padding:56px 32px;" class="menu-grid">
+
+    <!-- SNÍDANĚ -->
+    <div id="cat-snidane" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Ranní menu</div>
+        <h3 class="menu-h3">Snídaňové Menu <span style="font-size:13px;color:rgba(248,244,235,0.25);font-family:'Inter',sans-serif;font-weight:300;">Snídaně podáváme od 9:00 do 11:00 hodin</span></h3>
+      </div>
+      <div class="menu-item"><div><div class="menu-item-name">Café Level snídaně (1, 3, 7,8, 9, 11)</div><div class="menu-item-desc">šunka, sýr, míchané vejce 1 ks, opečená slanina, čerstvá zelenina, pečivo</div></div><div class="menu-item-price">165 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Babiččina snídaně (1, 3, 6, 7,8,,11)</div><div class="menu-item-desc">teplý závin se šlehačkou</div></div><div class="menu-item-price">90 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Omeleta Café Level(1, 3, 7)</div><div class="menu-item-desc">vajíčka 2 ks, sýr, šunka, pečivo</div></div><div class="menu-item-price">130 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Míchaná vajíčka (1, 3, 7)</div><div class="menu-item-desc">vajíčka na cibulce a másle 3 ks, polníček, pečivo</div></div><div class="menu-item-price">115 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Párečky (1, 2, 7, 10)</div><div class="menu-item-desc">párky (2 nožičky), hořčice, křen, pečivo</div></div><div class="menu-item-price">115 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Palačinky s Nutellou a banánem (1,3,7,8,11)</div><div class="menu-item-desc">palačinka, Nutella, banán</div></div><div class="menu-item-price">120 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Palačinky s džemem (1,3,7,11)</div><div class="menu-item-desc">palačinka, džem</div></div><div class="menu-item-price">120 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Řepové Tousty (1,7)</div><div class="menu-item-desc">2x tousty, řepa, čerstvý sýr, polníček nebo rukola</div></div><div class="menu-item-price">118 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Caprese Tousty (1,7)</div><div class="menu-item-desc">2x tousty, Mozzarella, rajčata, bazalka, polníček nebo rukola</div></div><div class="menu-item-price">118 Kč</div></div>
+    </div>
+
+    <!-- LAVAZZA -->
+    <div id="cat-lavazza" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Prémiová káva</div>
+        <h3 class="menu-h3">LAVAZZA TOP CLASS</h3>
+      </div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Ristretto (15ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">68 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso (25 ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">68 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Lungo (50ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">68 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Doppio (60ml)</div><div class="menu-item-desc">16g</div></div><div class="menu-item-price">88 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Macchiato</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">77 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cappuccino</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">82 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Double cappuccino</div><div class="menu-item-desc">16g</div></div><div class="menu-item-price">102 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Latte Macchiato</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">99 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Vídeňská káva</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">88 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Flat White</div><div class="menu-item-desc">16g</div></div><div class="menu-item-price">99 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Turecká káva</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">66 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Turecká káva se šlehačkou</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">88 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Tonic</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">88 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Affogato (kopeček zmrzliny, espresso)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">88 Kč</div></div>
+      <div style="border-top:1px solid rgba(197,160,89,0.1);margin-top:8px;padding-top:8px;">
+        <div class="menu-addon"><span>Porce mléka</span><span style="color:var(--gold);">10 Kč</span></div>
+        <div class="menu-addon"><span>Porce alternativního mléka (dle denní nabídky)</span><span style="color:var(--gold);">20 Kč</span></div>
+        <div class="menu-addon"><span>Porce smetany do kávy</span><span style="color:var(--gold);">17 Kč</span></div>
+        <div class="menu-addon"><span>Porce šlehačky</span><span style="color:var(--gold);">22 Kč</span></div>
+        <div class="menu-addon"><span>Příchuť do kávy dle nabídky</span><span style="color:var(--gold);">12 Kč</span></div>
+      </div>
+    </div>
+
+    <!-- TIERRA -->
+    <div id="cat-tierra" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Kávy</div>
+        <h3 class="menu-h3">CAFE TIERRA 100% RAIN FOREST</h3>
+      </div>
+      <p class="menu-note" style="margin-top:0; margin-bottom:14px;">Ručně sklízená, s maximální péčí ošetřená zrnka kávy. Vychutnejte si chuť a aroma kávy z pečlivě vybraných zrn, která pocházejí z malých farem a plantáží rovníkové Afriky, Indie nebo Střední a Jižní Ameriky.</p>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Ristoretto (15ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">70 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso (25ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">70 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Lungo (50ml)</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">70 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Dopio (60ml)</div><div class="menu-item-desc">16g</div></div><div class="menu-item-price">90 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Espresso Machiato</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">80 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cappuccino</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">82 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Double Cappuccino</div><div class="menu-item-desc">16g</div></div><div class="menu-item-price">104 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Latte Machiato</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">102 Kč</div></div>
+      
+      <div class="menu-sub-label">Matcha</div>
+      <div class="menu-item"><div><div class="menu-item-name">Matcha Laté Teplá/Studená varianta</div></div><div class="menu-item-price">92 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Matcha Cappuccino</div></div><div class="menu-item-price">82 Kč</div></div>
+      <p class="menu-note">Každou kávu Ilze vytvořit v bezkofeinové podobě</p>
+    </div>
+
+    <!-- SPECIÁLNÍ -->
+    <div id="cat-specialni" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Speciální</div>
+        <h3 class="menu-h3">Speciální Kávy</h3>
+      </div>
+      <div class="menu-sub-label">Studené kávy</div>
+      <div class="menu-item"><div><div class="menu-item-name">Frappé</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">70 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ledová káva se zmrzlinou a šlehačkou</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">90 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ice Latte</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">99 Kč</div></div>
+      
+      <div class="menu-sub-label">Kávy s alkoholem</div>
+      <div class="menu-item"><div><div class="menu-item-name">Alžírská káva</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">115 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Baileys latte</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">120 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Irská káva</div><div class="menu-item-desc">8,5g</div></div><div class="menu-item-price">120 Kč</div></div>
+    </div>
+
+    <!-- ČAJE -->
+    <div id="cat-caje" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Teplé nápoje</div>
+        <h3 class="menu-h3">Čaje a teplé nápoje</h3>
+      </div>
+      <div class="menu-item"><div><div class="menu-item-name">Sypané čaje Teahouse dle nabídky</div><div class="menu-item-desc">1 ks</div></div><div class="menu-item-price">75 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Čaje z lístků máty, z čerstvého zázvoru</div><div class="menu-item-desc">1 ks</div></div><div class="menu-item-price">75 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chai Latte</div><div class="menu-item-desc">classic, vanilka, spicy</div></div><div class="menu-item-price">82 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Svařený juice s kořením dle nabídky</div></div><div class="menu-item-price">72 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Porcovaný med</div><div class="menu-item-desc">1 ks</div></div><div class="menu-item-price">10 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sypaný čaj</div><div class="menu-item-desc">ledová nebo horká varianta citrón, ananas a jahoda, alpský vítr, sladká růže, exotické ovoce, borůvka a třešeň (1 ks)</div></div><div class="menu-item-price">85 Kč</div></div>
+      
+      <div class="menu-sub-label">Teplé nápoje s alkoholem</div>
+      <div class="menu-item"><div><div class="menu-item-name">Svařené víno skořením</div><div class="menu-item-desc">červené nebo bílé (0,2 ℓ)</div></div><div class="menu-item-price">84 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Grog (Tuzemskýrum 4 cl)</div><div class="menu-item-desc">0,2 ℓ</div></div><div class="menu-item-price">68 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Horká Griotka (Griotka 4 cl)</div><div class="menu-item-desc">0,2 ℓ</div></div><div class="menu-item-price">68 Kč</div></div>
+      
+      <div class="menu-sub-label">Horké čokolády</div>
+      <div class="menu-item"><div><div class="menu-item-name">Čokolády Arthemia</div><div class="menu-item-desc">mléčná, hořká, bílá, mléčná s lískovými oříšky, nugátový krém, s karamelem, light, s kokosem, s pomerančem a skořicí</div></div><div class="menu-item-price">76 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Horká čokoláda se šlehačkou</div></div><div class="menu-item-price">96 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Horká čokoláda se šlehačkou a se zmrzlinou</div></div><div class="menu-item-price">106 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Studené čokolády</div><div class="menu-item-desc">tradiční, banánová, nugátová</div></div><div class="menu-item-price">86 Kč</div></div>
+      <div class="menu-addon" style="padding: 10px; border-top: 1px solid rgba(197,160,89,0.1)"><span>Porce šlehačky</span><span style="color:var(--gold);">23 Kč</span></div>
+    </div>
+
+    <!-- DEZERTY -->
+    <div id="cat-dezerty" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Sladké</div>
+        <h3 class="menu-h3">Dorty a Dezerty</h3>
+      </div>
+      <div class="menu-item"><div><div class="menu-item-name" style="font-style:italic;">Dorty dle denní nabídky</div><div class="menu-item-desc">váš dort si můžete vybrat v chladící vitríně v naší kavárně</div></div><div class="menu-item-price">95-119 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Medovník</div></div><div class="menu-item-price">95 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Jablečný závin</div></div><div class="menu-item-price">82 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sacher</div></div><div class="menu-item-price">82 Kč</div></div>
+      
+      <div class="menu-sub-label">Palačinky</div>
+      <div class="menu-item"><div><div class="menu-item-name">Palačinky</div><div class="menu-item-desc">s banánem a Nutellou, ovocem nebo zmrzlinou či džemem</div></div><div class="menu-item-price">120 Kč</div></div>
+      
+      <div class="menu-sub-label">Zmrzlinové poháry</div>
+      <div class="menu-item"><div><div class="menu-item-name">Horké maliny</div><div class="menu-item-desc">dva kopečky vanilkové zmrzliny přelité horkými malinami</div></div><div class="menu-item-price">92 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Citrónová zmrzlina s horkým lesním ovocem</div><div class="menu-item-desc">dva kopečky citrónového sorbetu přelité horkou směsí lesních plodů</div></div><div class="menu-item-price">92 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Čokoládový / S banánem</div><div class="menu-item-desc">dva kopečky čokoládové zmrzliny, jeden kopeček vanilkové zmrzliny, čokoládová poleva, šlehačka, posyp z čokoládových kousků, oplatka, banán</div></div><div class="menu-item-price">92/97 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ořechová pochoutka</div><div class="menu-item-desc">dva kopečky ořechové zmrzliny, jeden kopeček čokoládové zmrzliny, jádra vlašských ořechů, šlehačka, ořechový posyp, oplatka</div></div><div class="menu-item-price">92 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Kopeček (vanilka, čokoláda, jahoda, oříšek, citrón)</div></div><div class="menu-item-price">20 Kč</div></div>
+      
+      <div class="menu-sub-label">Pudinkové dezerty</div>
+      <div class="menu-item"><div><div class="menu-item-name">Ženšen</div></div><div class="menu-item-price">76 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Exotická vanilka</div></div><div class="menu-item-price">76 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Vaječný krém</div></div><div class="menu-item-price">76 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lískový oříšek</div></div><div class="menu-item-price">76 Kč</div></div>
+    </div>
+
+    <!-- NEALKO -->
+    <div id="cat-nealko" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Osvěžení</div>
+        <h3 class="menu-h3">Nealkoholické nápoje</h3>
+      </div>
+      <div class="menu-item"><div><div class="menu-item-name">Coca Cola</div><div class="menu-item-desc">0,33 ℓ</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Coca Cola Zero</div><div class="menu-item-desc">0,33 ℓ</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sprite</div><div class="menu-item-desc">0,33 ℓ</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Fanta Orange</div><div class="menu-item-desc">0,33 ℓ</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Kinley Tonic</div><div class="menu-item-desc">Purple, Ginger Ale, Bitter Rose (0,25 ℓ)</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Natura neperliva</div><div class="menu-item-desc">0,3 ℓ</div></div><div class="menu-item-price">59 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Natura jemná</div><div class="menu-item-desc">0,3 ℓ</div></div><div class="menu-item-price">59 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Natura perlivá</div><div class="menu-item-desc">0,3 ℓ</div></div><div class="menu-item-price">59 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cappy</div><div class="menu-item-desc">pomeranč, jablko, jahoda, hruška, multivitamín, grep, broskev, ananas, černý rybíz (0,25 ℓ)</div></div><div class="menu-item-price">69 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Domácí limonády</div><div class="menu-item-desc">okurková, zázvorová, citrón, limetková, americká, bezová, levandulová (0,5 ℓ)</div></div><div class="menu-item-price">98 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Fuze Tea</div><div class="menu-item-desc">0,25 ℓ</div></div><div class="menu-item-price">66 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Kohoutková voda</div><div class="menu-item-desc">0,5 ℓ</div></div><div class="menu-item-price">50 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Red Bull</div><div class="menu-item-desc">0,25 ℓ</div></div><div class="menu-item-price">75 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Matcha limonáda</div><div class="menu-item-desc">0,33 ℓ</div></div><div class="menu-item-price">82 Kč</div></div>
+      
+      <div class="menu-sub-label">Čerstvé ovocné a zeleninové šťávy</div>
+      <p class="menu-note" style="margin-top:0; margin-bottom:10px;">pomeranč, grep, jablko<br>Na přání vám rádi namícháme kombinaci čerstvýchšťáv z naší nabídky dle vaší chuti!</p>
+      <div class="menu-item"><div><div class="menu-item-name">0,3 ℓ</div></div><div class="menu-item-price">130 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">0,4 ℓ</div></div><div class="menu-item-price">140 Kč</div></div>
+    </div>
+
+    <!-- KOKTEJLY -->
+    <div id="cat-koktejly" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Barmanka</div>
+        <h3 class="menu-h3">Koktejly</h3>
+      </div>
+      <div class="menu-sub-label">Nealkoholické koktejly</div>
+      <div class="menu-item"><div><div class="menu-item-name">Virgin mojito</div><div class="menu-item-desc">máta, limety, třtinový cukr, limejuice, ledová tříšť</div></div><div class="menu-item-price">110 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Virgin colada</div><div class="menu-item-desc">ananasový juice, smetana, kokosový sirup</div></div><div class="menu-item-price">110 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">French kiss</div><div class="menu-item-desc">Schweppes Ginger Ale, Grenadine, citronova štava</div></div><div class="menu-item-price">110 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Zmrzlinové koktejly (zmrzlina mléko, cukr)</div><div class="menu-item-desc">vanilkový, čokoládový</div></div><div class="menu-item-price">110 Kč</div></div>
+      
+      <div class="menu-sub-label">Alkoholické koktejly</div>
+      <div class="menu-item"><div><div class="menu-item-name">Mojito</div><div class="menu-item-desc">Havana Club, třtinový cukr, máta, soda, limeta</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Piña Colada</div><div class="menu-item-desc">Havana Club, ananasový džus, smetana, kokosový sirup</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cuba Libre</div><div class="menu-item-desc">Havana Club, Coca Cola, limeta</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tequila Sunrise</div><div class="menu-item-desc">Tequila Sauza, pomerančový džus, grenadina, citronová šťáva</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sexon the Beach</div><div class="menu-item-desc">Vodka, pomerančový džus, grenadina</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Aperol Spritz</div><div class="menu-item-desc">Aperol, proseco, soda, pomeranč</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gin Tonic</div><div class="menu-item-desc">Gin, tonic, citron</div></div><div class="menu-item-price">140 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mimosa</div><div class="menu-item-desc">Prosecco, pomerančový džus</div></div><div class="menu-item-price">140 Kč</div></div>
+    </div>
+
+    <!-- VÍNA -->
+    <div id="cat-vina" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Alkohol</div>
+        <h3 class="menu-h3">Vína, piva a Alkohol</h3>
+      </div>
+      <div class="menu-sub-label">Bílá vína (dle nabídky) 0,1 ℓ/0,2 ℓ/0,5 ℓ</div>
+      <div class="menu-item"><div><div class="menu-item-name">Chardonnay</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tramín</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lambrusco bianco</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Prosecco</div></div><div class="menu-item-price">65/85/175 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Prosecco 0,75 ℓ</div></div><div class="menu-item-price">248 Kč</div></div>
+
+      <div class="menu-sub-label">Růžovávína (dle nabídky) 0,1 ℓ/0,2 ℓ/0,5 ℓ</div>
+      <div class="menu-item"><div><div class="menu-item-name">Růžové víno</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lambrusco rosato</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+
+      <div class="menu-sub-label">Červenávína (dle nabídky) 0,1 ℓ/0,2 ℓ/0,5 ℓ</div>
+      <div class="menu-item"><div><div class="menu-item-name">Merlot</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lambrusco rosso</div></div><div class="menu-item-price">48/78/168 Kč</div></div>
+
+      <div class="menu-sub-label">Pivo lahvové</div>
+      <div class="menu-item"><div><div class="menu-item-name">0,33 ℓ Pilsner Urquell</div></div><div class="menu-item-price">52 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">0,33 ℓ Heineken</div></div><div class="menu-item-price">62 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">0,33 ℓ Clausthaler (nealkoholické)</div></div><div class="menu-item-price">62 Kč</div></div>
+
+      <div class="menu-sub-label">Alkohol</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 8px;">
+        <div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Campari 0,051</div></div><div class="menu-item-price" style="font-size:13px;">74 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Cinzano (extra dry, bianco, rosso) 0,1 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">84 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Finlandia 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">74 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Beefeater red 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">74 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Tequila Sauza blanco 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">84 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Tequila Sauza gold 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">94 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Havana Club 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">84 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Captain Morgan spiced 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">77 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Tuzemský rum 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">54 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Johnie Walker Red Label 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">82 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Jameson 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">82 Kč</div></div>
+        </div>
+        <div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Tullamore Dew 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">82 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Jack Daniels 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">105 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Metaxa 7 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">99 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Slivovice Bílá 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">66 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Jägermeister 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">74 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Baileys 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">84 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Becherovka 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">64 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Fernet Stock, Fernet Stock citrus 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">57 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Malibu 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">64 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Vaječný likér 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">57 Kč</div></div>
+          <div class="menu-item" style="padding:7px 10px;"><div><div class="menu-item-name" style="font-size:13px;">Griotka 0,04 ℓ</div></div><div class="menu-item-price" style="font-size:13px;">57 Kč</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KUCHYNĚ -->
+    <div id="cat-kuchyne" class="menu-section-card">
+      <div class="menu-section-header">
+        <div class="menu-eyebrow">Kuchyně</div>
+        <h3 class="menu-h3">Pizza, Saláty a Tousty</h3>
+      </div>
+      <div class="menu-sub-label">PIZZA</div>
+      <div class="menu-item"><div><div class="menu-item-name">Šunková</div></div><div class="menu-item-price">195Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Salámová</div></div><div class="menu-item-price">205Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sýrová</div></div><div class="menu-item-price">205Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tuňáková</div></div><div class="menu-item-price">205Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mexická</div></div><div class="menu-item-price">215Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Špenátová</div></div><div class="menu-item-price">215Kč</div></div>
+      
+      <div class="menu-sub-label">Saláty</div>
+      <div class="menu-item"><div><div class="menu-item-name">Caprese</div><div class="menu-item-desc">mozzarella, rajčata, bazalka, pečivo</div></div><div class="menu-item-price">116 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Carpacco z červené řepy</div><div class="menu-item-desc">červená řepa, rukola, čerstvý sýr, pečivo</div></div><div class="menu-item-price">116 Kč</div></div>
+      
+      <div class="menu-sub-label">Tousty, panini</div>
+      <div class="menu-item"><div><div class="menu-item-name">Zapečené tousty se šunkou a sýrem</div></div><div class="menu-item-price">96 Kč</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Panini dle denní nabídky</div></div><div class="menu-item-price">116 Kč</div></div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding:48px 32px;border-top:1px solid rgba(197,160,89,0.08);color:rgba(248,244,235,0.25);font-size:12.5px;font-style:italic;max-width:1280px;margin:0 auto;">
+    Ceny jsou uvedeny včetně DPH. Informace o alergenech vám ráda poskytne obsluha na vyžádání.
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer id="site-footer">
+  <div style="max-width:1280px;margin:0 auto;">
+    <div class="footer-logo-main">Café Level</div>
+    <div class="footer-logo-sub">Pardubice</div>
+    <div class="footer-divider"><span></span><span>✦</span><span></span></div>
+    <p style="font-size:13px;margin-bottom:28px;line-height:1.8;">Palác Pardubice, Masarykovo náměstí 2799, 530 02 Pardubice</p>
+    <div style="display:flex;gap:10px;justify-content:center;margin-bottom:36px;">
+      <a href="https://www.facebook.com/people/Caf%C3%A9-Level-Pardubice/100064034262839/" target="_blank" rel="noopener noreferrer"
+         style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(197,160,89,0.15);display:flex;align-items:center;justify-content:center;color:rgba(197,160,89,0.35);font-size:14px;text-decoration:none;transition:all 280ms ease;">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/cafe.level" target="_blank" rel="noopener noreferrer"
+         style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(197,160,89,0.15);display:flex;align-items:center;justify-content:center;color:rgba(197,160,89,0.35);font-size:14px;text-decoration:none;transition:all 280ms ease;">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+    <div style="width:100%;height:1px;background:rgba(197,160,89,0.08);margin-bottom:24px;"></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;opacity:0.35;transition:opacity 350ms ease;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='0.35'">
+      <span style="font-size:8.5px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(197,160,89,0.5);font-family:'Inter',sans-serif;font-weight:500;">Web od</span>
+      <a href="https://wavly.cz" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:6px;text-decoration:none;">
+        <svg width="18" height="18" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 65 C25 30, 45 20, 55 50 C65 75, 80 70, 88 40" stroke="url(#wg-cafe)" stroke-width="14" stroke-linecap="round" fill="none"/>
+          <path d="M12 55 C22 20, 42 10, 52 40 C62 65, 77 60, 85 30" stroke="url(#wg2-cafe)" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.45"/>
+          <defs>
+            <linearGradient id="wg-cafe" x1="10" y1="65" x2="90" y2="35" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#d4b06a"/>
+              <stop offset="100%" stop-color="#c5a059"/>
+            </linearGradient>
+            <linearGradient id="wg2-cafe" x1="10" y1="55" x2="90" y2="25" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#e0c07a"/>
+              <stop offset="100%" stop-color="#c5a059"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:12px;color:rgba(197,160,89,0.75);letter-spacing:0.04em;">wavly</span>
+      </a>
+    </div>
+    <p style="font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;">© 2024 Café Level Pardubice. Všechna práva vyhrazena.</p>
+  </div>
+</footer>
+
+<script>
+  // ─── Opening hours logic ───
+  (function() {
+    const hours = {
+      0: { open: 10, close: 21, label: 'Ne: 10:00 – 21:00' },   // Sunday
+      1: { open:  9, close: 21, label: 'Po – Čt: 9:00 – 21:00' },
+      2: { open:  9, close: 21, label: 'Po – Čt: 9:00 – 21:00' },
+      3: { open:  9, close: 21, label: 'Po – Čt: 9:00 – 21:00' },
+      4: { open:  9, close: 21, label: 'Po – Čt: 9:00 – 21:00' },
+      5: { open:  9, close: 22, label: 'Pá – So: 9:00 – 22:00' },
+      6: { open:  9, close: 22, label: 'Pá – So: 9:00 – 22:00' },
+    };
+    const now   = new Date();
+    const day   = now.getDay();
+    const hour  = now.getHours() + now.getMinutes() / 60;
+    const h     = hours[day];
+    const isOpen = hour >= h.open && hour < h.close;
+
+    const dot    = document.getElementById('status-dot');
+    const text   = document.getElementById('status-text');
+    const closing = document.getElementById('closing-time');
+    const closingLabel = document.getElementById('closing-label');
+    const statusHours  = document.getElementById('status-hours');
+
+    if (!isOpen) {
+      dot.style.background   = '#f87171';
+      dot.style.boxShadow    = '0 0 8px rgba(248,113,113,0.7)';
+      text.textContent       = 'Zavřeno';
+      text.style.color       = 'rgba(248,244,235,0.5)';
+      closing.textContent    = h.open + ':00';
+      closingLabel.textContent = 'Otevíráme';
+    } else {
+      closing.textContent = h.close + ':00';
+    }
+    statusHours.textContent = h.label;
+  })();
+
+  // ─── Scroll progress bar ───
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  }, { passive: true });
+
+  // ─── Navbar scroll ───
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ─── Mobile menu ───
+  function closeMobile() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  document.getElementById('mobileClose').addEventListener('click', closeMobile);
+
+  // ─── Menu sticky nav scroll-to ───
+  function scrollToCategory(id, btn) {
+    const el = document.getElementById('cat-' + id);
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+      document.querySelectorAll('.menu-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  }
+
+  // ─── Intersection Observer: reveal + section-h2 underline ───
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  function initReveal() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObs.observe(el));
+    document.querySelectorAll('.section-h2:not(.visible)').forEach(el => revealObs.observe(el));
+  }
+  initReveal();
+
+  // Re-init when switching pages
+  const _origShow = window.showPage;
+  window.showPage = function(pageId) {
+    _origShow(pageId);
+    setTimeout(initReveal, 60);
+  };
+</script>
+</body>
+</html>
